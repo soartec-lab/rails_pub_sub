@@ -1,24 +1,27 @@
-# README
+# Summary
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+`ActiveSupport::Notifications`を使用して、RailsでPub/Subモデルパターンを実装するサンプル
 
-Things you may want to cover:
+# 使い方
+## Subscriber
 
-* Ruby version
+`app/subscriber`ディレクトリを作成し、そこにsubscriberを作成
 
-* System dependencies
+### sample_subscriber.rb
 
-* Configuration
+メッセージを受け取ったsample_subscriberは、railsログにイベント名と、引数を出力するだけ。
 
-* Database creation
+## Publisher
+### 確認方法
 
-* Database initialization
+```
+$ rails c
+$ SampleSubscriber::Notifications.instrument('output_logger.sample.SampleSubscriber', "payload")
 
-* How to run the test suite
+```
+メッセージの送信は、`instrument`メソッドで行います。
+第一引数に、イベント名を指定し、第二引数に任意の引数を渡す事ができます。
 
-* Services (job queues, cache servers, search engines, etc.)
+# Document
 
-* Deployment instructions
-
-* ...
+See: https://edgeguides.rubyonrails.org/active_support_instrumentation.html
