@@ -22,6 +22,18 @@ $ SampleSubscriber::Notifications.instrument('output_logger.sample.SampleSubscri
 メッセージの送信は、`instrument`メソッドで行います。
 第一引数に、イベント名を指定し、第二引数に任意の引数を渡す事ができます。
 
+#### 特定の処理が終わった後にpublishしたい場合
+
+```
+SampleSubscriber::Notifications.instrument('output_logger.sample.SampleSubscriber', "payload") do
+sleep 1
+p 'hello'
+sleep 1
+end
+```
+
+instrumentブロックの中に書いた処理が実行された後にpublishされます
+
 # Document
 
 See: https://edgeguides.rubyonrails.org/active_support_instrumentation.html
